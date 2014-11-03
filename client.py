@@ -1,5 +1,12 @@
 import jsonrpclib
-server = jsonrpclib.Server('http://localhost:3030')
+import sys
+
+host = sys.argv[1]
+if host == 'localhost':
+  server = jsonrpclib.Server('http://localhost:5000')
+else:
+  server = jsonrpclib.Server('https://' + host + '.herokuapp.com:443')
+
 server.add(5,6)
 print jsonrpclib.history.request
 print jsonrpclib.history.response
